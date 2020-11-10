@@ -8,7 +8,7 @@
 <body>
     <form action="search.php?miss=<?php if(isset($_GET['miss'])){echo $_GET['miss'];}?>" method="post">
         <input type="text" name="user"><br>
-        <input type="password" name="pass" id="pass">
+        <input type="password" autocomplete = "root" name="pass" id="pass">
         <?php  if(isset($_GET['test'])){echo '<p>login manquant</p>';} ?>
         <br>
         <input type="submit" value="login">

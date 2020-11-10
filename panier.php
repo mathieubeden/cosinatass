@@ -11,7 +11,10 @@
 </html>
 
 <?php 
-    if(isset($_POST['user'])&&isset($_POST['pass'])){
+if(isset($_SESSION)){
+    echo '*page de panier*';
+    echo " bienvenu ".$_SESSION['nom'];
+}elseif(isset($_POST['user'])&&isset($_POST['pass'])){
         try{
             $base = new PDO('mysql:host=127.0.0.1;dbname=recette', 'root', '');
             $base->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
@@ -24,6 +27,9 @@
                 if(isset($ligne['nom'])){//si le login est bon
                     $_GET['miss']=0;
                     echo '*page de recherche*';
+                    session_start();
+                    $_SESSION['nom'] = $_POST['user'];
+                    echo " Le nom en session est:".$_SESSION['nom'];
 
                    
                 }else{//si le login n'est pas bon
@@ -37,7 +43,8 @@
             {
                 // message en cas d'erreur
                 die('Erreur : '.$e->getMessage());
-        }
+            }
+        
 
 
 
